@@ -1,4 +1,4 @@
-# Symfony CI base
+# Wordpress CI base
 
 Docker image with php-fpm and nginx
 
