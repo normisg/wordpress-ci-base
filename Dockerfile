@@ -2,21 +2,16 @@ FROM debian:stretch-slim
 
 ENV TERM=linux
 ENV DEBIAN_FRONTEND=noninteractive
-ENV PHP_VERSION 5.6
+ENV PHP_VERSION 7.2
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         apt-transport-https \
-        bzip2 \
         ca-certificates wget \
         curl \
-        g++ \
-        gcc \
         gnupg1 \
         lsb-release \
-        make \
         nano \
-        procps \
         supervisor \
     && wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
     && echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php.list \
@@ -31,12 +26,12 @@ RUN apt-get update \
         php${PHP_VERSION}-intl \
         php${PHP_VERSION}-json \
         php${PHP_VERSION}-mbstring \
-        php${PHP_VERSION}-mcrypt \
         php${PHP_VERSION}-mysql \
         php${PHP_VERSION}-soap \
         php${PHP_VERSION}-xml \
         php${PHP_VERSION}-zip \
-        php-xcache \
+        php-apcu \
+        php-apcu-bc \
     && mkdir -p /run/php \
     && ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm \
     && apt-get clean \
